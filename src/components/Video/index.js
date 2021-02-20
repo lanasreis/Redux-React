@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class index extends Component {
-    render() {
-        return (
-            <div>
-                <strong>Modulo X</strong>
-                <span>Aula Y</span>
-            </div>
-        )
-    }
-}
+import { connect } from 'react-redux'
+
+const Video = ({ activeLesson, activeModule }) => (
+    <div>
+        <strong>Modulo {activeModule.title}</strong>
+        <span>Aula {activeLesson.title}</span>
+    </div>
+)
+
+export default connect(state => ({
+    activeLesson: state.course.activeLesson, 
+    activeModule: state.course.activeModule 
+}))(Video)
